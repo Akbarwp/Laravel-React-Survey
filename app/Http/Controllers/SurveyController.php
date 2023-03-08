@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Survey;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use App\Models\SurveyAnswer;
 use Illuminate\Http\Request;
 use App\Models\SurveyQuestion;
+use App\Enums\QuestionTypeEnum;
+use App\Models\SurveyQuestionAnswer;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rules\Enum;
 use App\Http\Resources\SurveyResource;
 use App\Http\Requests\StoreSurveyRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UpdateSurveyRequest;
-use App\Enums\QuestionTypeEnum;
 use App\Http\Requests\StoreSurveyAnswerRequest;
-use App\Models\SurveyAnswer;
-use App\Models\SurveyQuestionAnswer;
-use DateTime;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Enum;
 
 class SurveyController extends Controller
 {
@@ -117,7 +116,7 @@ class SurveyController extends Controller
         }
 
         // Update Questions yang ada
-        $questionMap = collect($data['question'])->keyBy('id');
+        $questionMap = collect($data['questions'])->keyBy('id');
         foreach ($survey->questions as $question) {
             if (isset($questionMap[$question->id])) {
                 $this->updateQuestion($question, $questionMap[$question->id]);
@@ -153,8 +152,8 @@ class SurveyController extends Controller
     private function saveImage($image)
     {
         // Mengecek jika gambar sudah valid dengan base64 string
-        if (preg_match('/^data:image\/(w+);base64,/', $image, $type)) {
-
+        if (preg_match('/^data:image\/(\w+);base64,/', $image, $type)) {
+            
             // Mengeluarkan base64 encoded text tanpa mime type
             $image = substr($image, strpos($image, ',') + 1);
             
@@ -162,7 +161,7 @@ class SurveyController extends Controller
             $type = strtolower($type[1]);
 
             // Mengecek jika file berupa gambar
-            if (!in_array($type, ['jpg','jpeg','png','gif'])) {
+            if (!in_array($type, ['jpg','jpeg','gif','png'])) {
                 throw new \Exception('invalid image type');
             }
             $image = str_replace(' ', '+', $image);
@@ -170,23 +169,21 @@ class SurveyController extends Controller
 
             if ($image === false) {
                 throw new \Exception('base64_decode failed');
-
-            } else {
-                throw new \Exception(`didn't match data URI with image data`);
             }
-
-            $dir = 'image/';
-            $file = Str::random() . '.' . $type;
-            $absolutePath = public_path($dir);
-            $relativePath = $dir . $file;
-            
-            if (!File::exists($absolutePath)) {
-                File::makeDirectory($absolutePath, 0755, true);
-            }
-            file_put_contents($relativePath, $image);
-
-            return $relativePath;
+        } else {
+            throw new \Exception('did not match data URI with image data');
         }
+
+        $dir = 'images/';
+        $file = Str::random() . '.' . $type;
+        $absolutePath = public_path($dir);
+        $relativePath = $dir . $file;
+        if (!File::exists($absolutePath)) {
+            File::makeDirectory($absolutePath, 0755, true);
+        }
+        file_put_contents($relativePath, $image);
+
+        return $relativePath;
     }
 
     // Function untuk membuat Question

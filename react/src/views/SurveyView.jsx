@@ -145,11 +145,6 @@ export default function SurveyView() {
 
                                         <input type="file" className="file-input file-input-bordered file-input-primary ml-3" onChange={(e) => onImageChoose(e)} />
                                     </div>
-                                    {error.image && (
-                                        <label className="label">
-                                            <span className="label-text-alt text-error text-sm">{error.image[0]}</span>
-                                        </label>
-                                    )}
                                 </div>
                                 {/* Akhir Gambar */}
 
@@ -171,11 +166,6 @@ export default function SurveyView() {
                                 <div className="col-span-6 sm:col-span-3">
                                     <label htmlFor="expire_date" className="block text-sm font-medium text-gray-700">Expire Date</label>
                                     <input type="date" name="expire_date" id="expire_date" value={survey.expire_date} onChange={(e) => setSurvey({ ...survey, expire_date: e.target.value })} placeholder="Survey title" className="input input-primary mt-1 w-full" />
-                                    {error.expire_date && (
-                                        <label className="label">
-                                            <span className="label-text-alt text-error text-sm">{error.expire_date[0]}</span>
-                                        </label>
-                                    )}
                                 </div>
                                 {/* Akhir Expire Date */}
 
