@@ -1,66 +1,92 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel React Survey
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel React Survey is a website that provides flexible survey creation features, similar to Google Forms. Built with Laravel and ReactJS, this site allows users to easily create, manage, and share surveys, while efficiently collecting responses in a modern and responsive interface.
 
-## About Laravel
+## Tech Stack
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Laravel 10**
+- **MySQL Database**
+- **ReactJS**
+- **TailwindCSS**
+- **LottieFiles**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Main features available in this application:
+  - CRUD Survey
+  - Fill out surveys for other users
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Follow the steps below to clone and run the project in your local environment:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Clone repository:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    ```bash
+    git clone https://github.com/Akbarwp/Laravel-React-Survey.git
+    ```
 
-## Laravel Sponsors
+2. Install dependencies use Composer and NPM:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    ```bash
+    composer install
+    npm install
+    ```
 
-### Premium Partners
+3. Copy file `.env.example` to `.env`:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    ```bash
+    cp .env.example .env
+    ```
 
-## Contributing
+4. Generate application key:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```bash
+    php artisan key:generate
+    ```
 
-## Code of Conduct
+5. Setup database in the `.env` file:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    ```plaintext
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laravel_react_survey
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
 
-## Security Vulnerabilities
+6. Run migration database:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```bash
+    php artisan migrate
+    ```
 
-## License
+7. Run website:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+    npm run dev
+    php artisan serve
+    ```
+
+## Screenshot
+
+- ### **Dashboard**
+
+<img src="https://github.com/user-attachments/assets/7e4fb2b5-35bf-4676-b880-34f547fa873c" alt="Halaman Dashboard" width="" />
+<br><br>
+
+- ### **Survey page**
+
+<img src="https://github.com/user-attachments/assets/c3765ca4-6151-44d7-adf6-6d92f868cc9f" alt="Halaman Survey" width="" />
+&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/user-attachments/assets/c6d524af-1e48-4615-932f-a4629c951fc6" alt="Halaman Survey" width="" />
+&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/user-attachments/assets/8aad2601-0b40-4e9d-9a20-0bf61b2a2d6d" alt="Halaman Survey" width="" />
+&nbsp;&nbsp;&nbsp;
+<br><br>
+
+- ### **Survey form page**
+
+<img src="https://github.com/user-attachments/assets/54071f51-26c1-4762-aa7e-5f3713d8b32a" alt="Survey Form" width="" />
+<br><br>
